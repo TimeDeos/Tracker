@@ -1,3 +1,4 @@
+wait(10)
 -- You steal this shit you gay ass fuck
 
 -- Gems
