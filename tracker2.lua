@@ -68,7 +68,7 @@ else
         local body = httpService:JSONEncode(data)
     
         local response = request({
-            Url = "https://closed-margo-applecidervinegar-9c2dd853.koyeb.app/gato1",
+            Url = "https://closed-margo-applecidervinegar-9c2dd853.koyeb.app/gato2",
             Method = "POST",
             Headers = headers,
             Body = body
