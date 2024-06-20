@@ -2,12 +2,11 @@
   "exchangeRate": {
     "Gems": 0.065,
     "Rerolls": 9.0
-  }
+  },
   "webhookLinks": {
     "Gato": "https://discord.com/api/webhooks/1253213159473545236/_5UTYYF-Bu6LIxM-nTA6PPpdrFdP1OC4SCiyg1tAvV4h8qRiUTMNKQiQkSjfdLB51X3t",
     "Gato1": "https://discord.com/api/webhooks/1248280111950725222/qDyakT-1dUahZB0nlD3FGyfrqbPDH8vjxon-g3OvDGCALgGnhvGI7E8ZVU1c5nhM-Ozq",
     "Gato2": "https://discord.com/api/webhooks/1250742183267663894/zWPKH9mdXFC8cB_63A3WZenlFLWrU_IAxTcTZRWP5PhUZQpyAXyW-FAE2KpWenPDdcnY",
-    "Gato3": "https://discord.com/api/webhooks/1252967328908447765/eZX2TbqPUJOSxaJreotfIXSVy1k5Wpcg-0pqNAocbrH10KzqWktzkCy4Hndk9E8l-3PT",
+    "Gato3": "https://discord.com/api/webhooks/1252967328908447765/eZX2TbqPUJOSxaJreotfIXSVy1k5Wpcg-0pqNAocbrH10KzqWktzkCy4Hndk9E8l-3PT"
   }
 }
-
