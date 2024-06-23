@@ -1,8 +1,6 @@
-repeat wait() until game:IsLoaded()
-
 local script_key = "PqHoDxFkbceJBkpqwayystTAAtkIRqth"
 local Username = game.Players.LocalPlayer.Name
-local ID = game.placeId
+local ID = game.PlaceId
 
 -- Pre-assigned users to transfer accounts
 local userAssignments = {
@@ -81,10 +79,10 @@ local function setupAccountSettings(isMainAccount)
         TradeItems = {"Trait Crystal", "Risky Dice"},
         GiveBackUnit = true
     }
+    getgenv().script_key = script_key  -- Assign the script key here
 end
 
 local function startScript()
-    getgenv().script_key = script_key
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()
 end
 
@@ -109,14 +107,10 @@ if not isConfigured then
     error("Username not found in the configuration")
 end
 
-if isTransferAccount then
+if isTransferAccount or ID == 17017769292 then
+    spawnFPSBoost()  -- Only spawn FPS boost if it's a transfer account or the specific place ID condition
+    wait(300)  -- Always wait 300 seconds for non-transfer accounts
     startScript()
 else
-    if ID == 17017769292 then
-        spawnFPSBoost()
-        wait(600)
-        startScript()
-    else
-        startScript()
-    end
+    startScript()
 end
