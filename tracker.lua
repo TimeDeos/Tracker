@@ -109,7 +109,7 @@ end
 
 if isTransferAccount or ID == 17017769292 then
     spawnFPSBoost()  -- Only spawn FPS boost if it's a transfer account or the specific place ID condition
-    wait(300)  -- Always wait 300 seconds for non-transfer accounts
+    wait(600)  -- Always wait 300 seconds for non-transfer accounts
     startScript()
 else
     startScript()
