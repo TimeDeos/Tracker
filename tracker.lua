@@ -1,5 +1,8 @@
+repeat wait() until game:IsLoaded()
+
 local script_key = "PqHoDxFkbceJBkpqwayystTAAtkIRqth"
 local Username = game.Players.LocalPlayer.Name
+local ID = game.placeId
 
 -- Pre-assigned users to transfer accounts
 local userAssignments = {
@@ -25,45 +28,79 @@ local userAssignments = {
     }
 }
 
-local function startScript(config)
-    getgenv().script_key = config.script_key
-    getgenv().SelectedPlayer = config.SelectedPlayer
-    getgenv().MainAccount = config.MainAccount
-    getgenv().MainAccountSetting = config.MainAccountSetting
-    getgenv().AltAccountSetting = config.AltAccountSetting
-
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()
+local function blackScreen()
+    local player = game.Players.LocalPlayer
+    local playerGui = player:WaitForChild("PlayerGui")
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "BlackScreenGui"
+    screenGui.Parent = playerGui
+    local blackFrame = Instance.new("Frame")
+    blackFrame.Size = UDim2.new(1, 0, 1, 0)
+    blackFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+    blackFrame.BorderSizePixel = 0
+    blackFrame.Parent = screenGui
+    game:GetService("RunService"):Set3dRenderingEnabled(false)
 end
 
-local isConfigured = false
-local isTransferAccount = false
-local config = {
-    script_key = script_key,
-    MainAccountSetting = {
+local function spawnFPSBoost()
+    local lobby = game:GetService("Workspace").Lobby
+    local keep = lobby.Build.Play
+
+    -- Iterate through all children of lobby
+    for _, child in ipairs(lobby:GetChildren()) do
+        -- Check if the child is not the instance to keep
+        if child ~= lobby.Build then
+            child:Destroy()
+        else
+            -- If the child is Build, iterate through its children
+            for _, buildChild in ipairs(child:GetChildren()) do
+                if buildChild ~= keep then
+                    buildChild:Destroy()
+                end
+            end
+        end
+    end
+    workspace.TowerModel:Destroy()
+    workspace.SubStuff_DONT_DELETE.Leaderboards:Destroy()
+    workspace.SubStuff_DONT_DELETE.TowerOfEternity:Destroy()
+    workspace.Model:Destroy()
+    workspace.Lobby.Build.Play:GetChildren()[9]:Destroy()
+    blackScreen()
+end
+
+local function setupAccountSettings(isMainAccount)
+    getgenv().SelectedPlayer = Username
+    getgenv().MainAccount = isMainAccount
+    getgenv().MainAccountSetting = {
         ManuallyClaimBooth = false,
         Units = {"Electric Cyborg", "Magic Arrow"}
-    },
-    AltAccountSetting = {
+    }
+    getgenv().AltAccountSetting = {
         Trade = true,
         NotSendGem = false,
         TradeItems = {"Trait Crystal", "Risky Dice"},
         GiveBackUnit = true
     }
-}
+end
+
+local function startScript()
+    getgenv().script_key = script_key
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()
+end
+
+local isConfigured = false
+local isTransferAccount = false
 
 for transfer, users in pairs(userAssignments) do
     if transfer == Username then
-        config.SelectedPlayer = transfer
-        config.MainAccount = true
+        setupAccountSettings(true)
         isConfigured = true
         isTransferAccount = true
-        print("Configured as transfer account for: " .. transfer)
         break
     elseif table.find(users, Username) then
-        config.SelectedPlayer = transfer
-        config.MainAccount = false
+        getgenv().SelectedPlayer = transfer
+        setupAccountSettings(false)
         isConfigured = true
-        print("Configured as user for transfer account: " .. transfer)
         break
     end
 end
@@ -73,8 +110,13 @@ if not isConfigured then
 end
 
 if isTransferAccount then
-    startScript(config)
+    startScript()
 else
-    wait(600)
-    startScript(config)
+    if ID == 17017769292 then
+        spawnFPSBoost()
+        wait(600)
+        startScript()
+    else
+        startScript()
+    end
 end
