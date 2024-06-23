@@ -114,13 +114,13 @@ if not isConfigured then
 end
 
 if isTransferAccount then
-    startScript()
+    startScript(config)
 else
     if ID == 17017769292 then
         spawnFPSBoost()
         wait(600)
-        startScript()
+        startScript(config)
     else
-        startScript()
+        startScript(config)
     end
 end
