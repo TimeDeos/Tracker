@@ -1,19 +1,44 @@
 local script_key = "PqHoDxFkbceJBkpqwayystTAAtkIRqth"
 local Username = game.Players.LocalPlayer.Name
 local ID = game.PlaceId
+local gemsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Currencies.Gems
 
 local function blackScreen()
-    local player = game.Players.LocalPlayer
-    local playerGui = player:WaitForChild("PlayerGui")
-    local screenGui = Instance.new("ScreenGui")
-    screenGui.Name = "BlackScreenGui"
-    screenGui.Parent = playerGui
-    local blackFrame = Instance.new("Frame")
-    blackFrame.Size = UDim2.new(1, 0, 1, 0)
-    blackFrame.BackgroundColor3 = Color3.new(0, 0, 0)
-    blackFrame.BorderSizePixel = 0
-    blackFrame.Parent = screenGui
-    game:GetService("RunService"):Set3dRenderingEnabled(false)
+    if gemsCount > 100 then
+        local player = game.Players.LocalPlayer
+        local playerGui = player:WaitForChild("PlayerGui")
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = "BlackScreenGui"
+        screenGui.Parent = playerGui
+        local blackFrame = Instance.new("Frame")
+        blackFrame.Size = UDim2.new(1, 0, 1, 0)
+        blackFrame.BackgroundColor3 = Color3.new(0, 0, 0)
+        blackFrame.BorderSizePixel = 0
+        blackFrame.Parent = screenGui
+        game:GetService("RunService"):Set3dRenderingEnabled(false)
+    elseif gemsCount <= 100 then
+        local ScreenGui = Instance.new("ScreenGui")
+        local Frame = Instance.new("Frame")
+        local TextLabel = Instance.new("TextLabel")
+    
+        ScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+    
+        Frame.Parent = ScreenGui
+        Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        Frame.BorderSizePixel = 0
+        Frame.Size = UDim2.new(1, 0, 1, 0)
+    
+        TextLabel.Parent = Frame
+        TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.BorderSizePixel = 0
+        TextLabel.Position = UDim2.new(0.5, -100, 0.5, -50)
+        TextLabel.Size = UDim2.new(0, 200, 0, 100)
+        TextLabel.Font = Enum.Font.SourceSans
+        TextLabel.Text = "Close me!"
+        TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TextLabel.TextScaled = true
+    end
 end
 
 local function spawnFPSBoost()
