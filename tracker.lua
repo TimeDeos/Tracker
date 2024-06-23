@@ -25,39 +25,45 @@ local userAssignments = {
     }
 }
 
-local function setupAccountSettings(isMainAccount)
-    getgenv().SelectedPlayer = Username
-    getgenv().MainAccount = isMainAccount
-    getgenv().MainAccountSetting = {
-        ManuallyClaimBooth = false,
-        Units = {"Electric Cyborg", "Magic Arrow"}
-    }
-    getgenv().AltAccountSetting = {
-        Trade = true,
-        NotSendGem = false,
-        TradeItems = {"Trait Crystal", "Risky Dice"},
-        GiveBackUnit = true
-    }
-end
+local function startScript(config)
+    getgenv().script_key = config.script_key
+    getgenv().SelectedPlayer = config.SelectedPlayer
+    getgenv().MainAccount = config.MainAccount
+    getgenv().MainAccountSetting = config.MainAccountSetting
+    getgenv().AltAccountSetting = config.AltAccountSetting
 
-local function startScript()
-    getgenv().script_key = script_key
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3051457467c11f25288cfe2de3708373.lua"))()
 end
 
 local isConfigured = false
 local isTransferAccount = false
+local config = {
+    script_key = script_key,
+    MainAccountSetting = {
+        ManuallyClaimBooth = false,
+        Units = {"Electric Cyborg", "Magic Arrow"}
+    },
+    AltAccountSetting = {
+        Trade = true,
+        NotSendGem = false,
+        TradeItems = {"Trait Crystal", "Risky Dice"},
+        GiveBackUnit = true
+    }
+}
 
 for transfer, users in pairs(userAssignments) do
     if transfer == Username then
-        setupAccountSettings(true)
+        config.SelectedPlayer = transfer
+        config.MainAccount = true
         isConfigured = true
         isTransferAccount = true
+        print("Configured as transfer account for: " .. transfer)
         break
     elseif table.find(users, Username) then
-        getgenv().SelectedPlayer = transfer
-        setupAccountSettings(false)
+        config.SelectedPlayer = transfer
+        config.MainAccount = false
         isConfigured = true
+        print("Configured as user for transfer account: " .. transfer)
         break
     end
 end
@@ -67,8 +73,8 @@ if not isConfigured then
 end
 
 if isTransferAccount then
-    startScript()
+    startScript(config)
 else
-    wait(300)
-    startScript()
+    wait(600)
+    startScript(config)
 end
