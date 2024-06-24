@@ -11,28 +11,25 @@ local levelCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):
 -- Username
 local playerName = game.Players.LocalPlayer.Name
 
--- Function to hop to a low server
 local function hopLowServer()
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
     local Api = "https://games.roblox.com/v1/games/"
+
     local _place = game.PlaceId
     local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
-
-    local function ListServers(cursor)
+    function ListServers(cursor)
        local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
        return Http:JSONDecode(Raw)
     end
 
-    local Server, Next
-    repeat
+    local Server, Next; repeat
        local Servers = ListServers(Next)
        Server = Servers.data[1]
        Next = Servers.nextPageCursor
     until Server
 
-    TPS:TeleportToPlaceInstance(_place, Server.id, game.Players.LocalPlayer)
-    -- credits to https://robloxscripts.com/server-hopper-join-lowest-player-servers-on-roblox-script/
+    TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 end
 
 local function blackScreen()
@@ -72,45 +69,13 @@ local function spawnFPSBoost()
     blackScreen()
 end
 
-local function startTimerAndCheckPlaceId()
-    local placeIdToCheck = 17764698696
-    local checkInterval = 5 * 60 -- 5 minutes in seconds
-
-    spawn(function()
-        wait(checkInterval)
-        if game.PlaceId == placeIdToCheck then
-            hopLowServer()
-        end
-    end)
-end
-
 ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
-    startTimerAndCheckPlaceId()
+    wait(300)
+    if ID == 17764698696 then
+        hopLowServer()
+    end
 else
     blackScreen()
-    while wait(15) do
-        local msg = "[" .. levelCount .. "] " .. playerName .. " - <:diamond:1244316023708979271> " .. gemsCount .. " <:rr:1244982385242804304> " .. rerollsCount
-
-        print("Sending message:", msg)  -- Debugging line
-
-        local httpService = game:GetService("HttpService")
-        local headers = {
-            ["Content-Type"] = "application/json"
-        }
-        local data = {
-            ["content"] = msg
-        }
-        local body = httpService:JSONEncode(data)
-
-        local response = request({
-            Url = "http://192.168.1.2:5000/gato",
-            Method = "POST",
-            Headers = headers,
-            Body = body
-        })
-        print("Sent..?")
-        print("Server response:", response)
-    end
 end
