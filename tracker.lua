@@ -72,7 +72,7 @@ end
 ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
-    wait(300)
+    wait(90)
     if ID == 17764698696 then
         hopLowServer()
     end
