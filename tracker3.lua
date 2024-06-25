@@ -31,7 +31,7 @@ local function hopLowServer()
 
     TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 end
-hopLowServer()
+
 local function blackScreen()
     local player = game.Players.LocalPlayer
     local playerGui = player:WaitForChild("PlayerGui")
