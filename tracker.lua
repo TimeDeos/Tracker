@@ -63,15 +63,6 @@ end
 ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
-    wait(90)
-    while true do
-        if ID == 17764698696 then
-            print("Attempting to rejoin")
-            hopLowServer()
-            print("Attempt sent.. waiting.)
-            wait(10)
-        end
-    end
 else
     blackScreen()
 end
