@@ -2,15 +2,6 @@
 -- Gato FPS Boost
 repeat wait() until game:IsLoaded()
 
--- Gems
-local gemsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Currencies.Gems
--- Rerolls
-local rerollsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Items["Trait Crystal"]
--- Level
-local levelCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Level
--- Username
-local playerName = game.Players.LocalPlayer.Name
-
 local function hopLowServer()
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
