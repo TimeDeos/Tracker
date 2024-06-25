@@ -66,14 +66,14 @@ local function spawnFPSBoost()
     workspace.SubStuff_DONT_DELETE.TowerOfEternity:Destroy()
     workspace.Model:Destroy()
     workspace.Lobby.Build.Play:GetChildren()[9]:Destroy()
-    blackScreen()
+    -- blackScreen()
 end
 
 ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
 else
-    blackScreen()
+    -- blackScreen()
     while wait(15) do
         local msg = "[" .. levelCount .. "] " .. playerName .. " - <:diamond:1244316023708979271> " .. gemsCount .. " <:rr:1244982385242804304> " .. rerollsCount
     
