@@ -2,6 +2,15 @@
 -- Gato FPS Boost
 repeat wait() until game:IsLoaded()
 
+-- Gems
+local gemsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Currencies.Gems
+-- Rerolls
+local rerollsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Items["Trait Crystal"]
+-- Level
+local levelCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Level
+-- Username
+local playerName = game.Players.LocalPlayer.Name
+
 local function hopLowServer()
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
@@ -22,7 +31,7 @@ local function hopLowServer()
 
     TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
 end
-
+hopLowServer()
 local function blackScreen()
     local player = game.Players.LocalPlayer
     local playerGui = player:WaitForChild("PlayerGui")
@@ -65,4 +74,27 @@ if ID == 17764698696 then
     spawnFPSBoost()
 else
     blackScreen()
+    while wait(15) do
+        local msg = "[" .. levelCount .. "] " .. playerName .. " - <:diamond:1244316023708979271> " .. gemsCount .. " <:rr:1244982385242804304> " .. rerollsCount
+    
+        print("Sending message:", msg)  -- Debugging line
+    
+        local httpService = game:GetService("HttpService")
+        local headers = {
+            ["Content-Type"] = "application/json"
+        }
+        local data = {
+            ["content"] = msg
+        }
+        local body = httpService:JSONEncode(data)
+    
+        local response = request({
+            Url = "http://192.168.1.4:5000/gato",
+            Method = "POST",
+            Headers = headers,
+            Body = body
+        })
+        print("Sent..?")
+        print("Server response:", response)
+    end
 end
