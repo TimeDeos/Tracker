@@ -60,7 +60,7 @@ local function spawnFPSBoost()
     blackScreen()
 end
 
-ID = game.PlaceId
+local ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
     wait(90)
@@ -72,4 +72,14 @@ if ID == 17764698696 then
     end
 else
     blackScreen()
+    local startTime = tick()
+    while true do
+        if tick() - startTime >= 3000 then
+            while true do
+                hopLowServer()
+                wait(5) -- Try hopping every 5 seconds until successful
+            end
+        end
+        wait(1) -- Adding a wait to prevent freezing
+    end
 end
