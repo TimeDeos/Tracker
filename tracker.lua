@@ -1,3 +1,5 @@
+pcall(delfile, 'b648cec51b1d83aab602bbee4e2a8c6f-cache.lua')
+
 -- You steal this shit you gay ass fuck
 -- Gato FPS Boost
 repeat wait() until game:IsLoaded()
