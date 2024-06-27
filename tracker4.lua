@@ -2,14 +2,26 @@
 -- Gato FPS Boost
 repeat wait() until game:IsLoaded()
 
--- Gems
-local gemsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Currencies.Gems
--- Rerolls
-local rerollsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Items["Trait Crystal"]
--- Level
-local levelCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Level
--- Username
-local playerName = game.Players.LocalPlayer.Name
+local function hopLowServer()
+    local Http = game:GetService("HttpService")
+    local TPS = game:GetService("TeleportService")
+    local Api = "https://games.roblox.com/v1/games/"
+
+    local _place = game.PlaceId
+    local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+    function ListServers(cursor)
+       local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+       return Http:JSONDecode(Raw)
+    end
+
+    local Server, Next; repeat
+       local Servers = ListServers(Next)
+       Server = Servers.data[1]
+       Next = Servers.nextPageCursor
+    until Server
+
+    TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+end
 
 local function blackScreen()
     local player = game.Players.LocalPlayer
@@ -45,12 +57,29 @@ local function spawnFPSBoost()
     workspace.SubStuff_DONT_DELETE.TowerOfEternity:Destroy()
     workspace.Model:Destroy()
     workspace.Lobby.Build.Play:GetChildren()[9]:Destroy()
-    --blackScreen()
+    blackScreen()
 end
 
-ID = game.PlaceId
+local ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
+    wait(90)
+    while true do
+        if ID == 17764698696 then
+            hopLowServer()
+            wait(10)
+        end
+    end
 else
-    print("Lol")
+    blackScreen()
+    local startTime = tick()
+    while true do
+        if tick() - startTime >= 3000 then
+            while true do
+                hopLowServer()
+                wait(5) -- Try hopping every 5 seconds until successful
+            end
+        end
+        wait(1) -- Adding a wait to prevent freezing
+    end
 end
