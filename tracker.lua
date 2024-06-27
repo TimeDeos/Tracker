@@ -63,6 +63,13 @@ end
 ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
+    wait(90)
+    while true do
+        if ID == 17764698696 then
+            hopLowServer()
+            wait(10)
+        end
+    end
 else
     blackScreen()
 end
