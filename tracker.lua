@@ -1,12 +1,6 @@
-
 -- You steal this shit you gay ass fuck
 -- Gato FPS Boost
 repeat wait() until game:IsLoaded()
-script_key="avJAxyCQwZSQnjQjQxoRLzPYggnfkkvc";
-repeat
-loadstring(game:HttpGet('https://api.luarmor.net/files/v3/loaders/b648cec51b1d83aab602bbee4e2a8c6f.lua'))()
-task.wait(10)
-until getgenv().buanghub ~= nil;
 
 
 local function hopLowServer()
@@ -79,14 +73,10 @@ if ID == 17764698696 then
     end
 else
     blackScreen()
-    local startTime = tick()
-    while true do
-        if tick() - startTime >= 3000 then
-            while true do
-                hopLowServer()
-                wait(5) -- Try hopping every 5 seconds until successful
-            end
-        end
-        wait(1) -- Adding a wait to prevent freezing
-    end
+    repeat task.wait() until game:IsLoaded()
+    getgenv().Hermanos_Settings = {
+        ['key'] = '9e5a6c16-283a-49db-9ccc-8002c065413a',
+        ['PC'] = 'VPS1',
+    	}
+    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/ad-main.lua'))() end)
 end
