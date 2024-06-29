@@ -2,6 +2,7 @@
 -- Gato FPS Boost
 repeat wait() until game:IsLoaded()
 
+
 local function hopLowServer()
     local Http = game:GetService("HttpService")
     local TPS = game:GetService("TeleportService")
@@ -57,11 +58,25 @@ local function spawnFPSBoost()
     workspace.SubStuff_DONT_DELETE.TowerOfEternity:Destroy()
     workspace.Model:Destroy()
     workspace.Lobby.Build.Play:GetChildren()[9]:Destroy()
+    blackScreen()
 end
 
-ID = game.PlaceId
+local ID = game.PlaceId
 if ID == 17764698696 then
     spawnFPSBoost()
+    wait(90)
+    while true do
+        if ID == 17764698696 then
+            hopLowServer()
+            wait(10)
+        end
+    end
 else
-    print("Hi")
+    blackScreen()
+    repeat task.wait() until game:IsLoaded()
+    getgenv().Hermanos_Settings = {
+        ['key'] = '9e5a6c16-283a-49db-9ccc-8002c065413a',
+        ['PC'] = 'VPS3',
+    	}
+    task.spawn(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/hermanos-dev/hermanos-script/main/ad-main.lua'))() end)
 end
