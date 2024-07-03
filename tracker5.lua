@@ -167,7 +167,7 @@ if isTransferAccount then
     startScript(config)
 else
     if ID == 17017769292 then
-        spawnFPSBoost()
+        blackScreen()
         wait(600)
         startScript(config)
     else
