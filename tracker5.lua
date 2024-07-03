@@ -67,29 +67,54 @@ local function spawnFPSBoost()
     blackScreen()
 end
 
+-- VPS 1/2
+-- local userAssignments = {
+--     ZygkWW0205 = {
+--         "VvhTCR5264", "JgkdWT3407", "VwmxVB8202", "KkghRV0780", 
+--         "CncGCR1969", "CgklJB1602", "LmfjKR9309", "PfmqNY7543"
+--     },
+--     GatosT001 = {
+--         "PrbwQZ5049", "PfnQSR6347", "NsxpRP5003", "GmqmVZ2055",
+--         "QclXBN1191", "SrpsZY8890", "ZvdyCG2680", "GreenPH9478"
+--     },
+--     TotalPetX_2 = {
+--         "MgzsJW0374", "WrhjQD8317", "FrdJWB1833", "NtxvLH4280",
+--         "FcgnCQ4170", "MbfgYF2213", "QhpFXN8335", "DswpPT6275"
+--     },
+--     PnzMTJ5165 = {
+--         "YxxWHB2538", "GrhqZS4987", "NxwtXK8650", "JjmqWT3603",
+--         "LfjFMP3505", "DjjXCZ8033", "WchfRV4896", "XfxdzYG0938"
+--     },
+--     Chanll1224 = {
+--         "BjdhXM3673", "GyhjNG7052", "XzjbFR4406", "JbrtCC1564",
+--         "GxypJR9561", "XlgQPD4571", "ThompsonGZ9194", "SmmcMB7276"
+--     }
+-- }
 
+-- VPS 3/4
 local userAssignments = {
     ZygkWW0205 = {
-        "VvhTCR5264", "JgkdWT3407", "VwmxVB8202", "KkghRV0780", 
-        "CncGCR1969", "CgklJB1602", "LmfjKR9309", "PfmqNY7543"
+        "NjzjLJ1485", "DfryJQ8066", "MwqnDZ4181", "CcgzLW8798",
+        "HnfgPY3221", "YwjJSM9539", "FbswLF4433", "ScscDR8992"
     },
     GatosT001 = {
-        "PrbwQZ5049", "PfnQSR6347", "NsxpRP5003", "GmqmVZ2055",
-        "QclXBN1191", "SrpsZY8890", "ZvdyCG2680", "GreenPH9478"
+        "GbbpSN2079", "thompsonTC7955", "KlqfNL0429", "ZtzwTR6905",
+        "LqhqMV0664", "JxstJG2612", "RysgSH4820", "DmvBGT9178"
     },
     TotalPetX_2 = {
-        "MgzsJW0374", "WrhjQD8317", "FrdJWB1833", "NtxvLH4280",
-        "FcgnCQ4170", "MbfgYF2213", "QhpFXN8335", "DswpPT6275"
+        "YnylHZ9941", "bykovPDF4508", "QnkGXT5169", "HzkgLS4691",
+        "XthwLK7142", "WrightSL1336", "HymXPD0855", "JkggWT8744"
     },
     PnzMTJ5165 = {
-        "YxxWHB2538", "GrhqZS4987", "NxwtXK8650", "JjmqWT3603",
-        "LfjFMP3505", "DjjXCZ8033", "WchfRV4896", "XfxdzYG0938"
+        "GcrkRT8491", "NbpxCP7376", "FqpRWH1316", "QftmSJ0439",
+        "QmvwFP0737", "YgmPND3379", "JonesKV3284", "VytcRK6795"
     },
     Chanll1224 = {
-        "BjdhXM3673", "GyhjNG7052", "XzjbFR4406", "JbrtCC1564",
-        "GxypJR9561", "XlgQPD4571", "ThompsonGZ9194", "SmmcMB7276"
+        "JmsgQJ4842", "YnpjBP5773", "YscpSG0430", "ZpzYVS0430",
+        "NtrxBY8535", "CrgtQX9249", "RvwVZR0262", "bakerCX8226"
     }
 }
+
 
 local function startScript(config)
     getgenv().script_key = config.script_key
@@ -149,3 +174,6 @@ else
         startScript(config)
     end
 end
+
+
+
