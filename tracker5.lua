@@ -288,8 +288,8 @@ else
         startScript(config)
     else
         startScript(config)
-        --wait(3)
-        --spawnFPSBoost2()
+        wait(3)
+        spawnFPSBoost2()
     end
 end
 
