@@ -1,5 +1,5 @@
 -- FUTURE GATO!! YOU FUCKED UP!!
--- THIS IS FOR VPS 4! FOR VPS 4 SCRIPT, PUT VPS! 
+-- THIS IS FOR VPS 4! FOR VPS 4 SCRIPT, PUT VPS 1! 
 -- WHY U SO DUMB!
 getgenv().Config = {
     ["Hide Key"] = "U",
