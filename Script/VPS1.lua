@@ -122,5 +122,5 @@ getgenv().Config = {
         ["6"] = "Auto Join Map"
     }
 }
-script_key="avJAxyCQwZSQnjQjQxoRLzPYggnfkkvc";
+script_key="LUgaVYUMWMFvqPbSEOtCZFcQVhhUpskY";
 loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/PremiumBuangHub.lua"))()
