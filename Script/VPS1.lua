@@ -1,3 +1,6 @@
+-- FUTURE GATO!! YOU FUCKED UP!!
+-- THIS IS FOR VPS 4! FOR VPS 4 SCRIPT, PUT VPS! 
+-- WHY U SO DUMB!
 getgenv().Config = {
     ["Hide Key"] = "U",
     ["Macros Selected"] = {
