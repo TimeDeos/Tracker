@@ -4,6 +4,7 @@ getgenv().Setting = {
     AutoClaimQuest = true,
     CapFps = true,
     FpsBoost = true,
+    BlackScreen = true,
     WebhookUrl = "https://discord.com/api/webhooks/1259058359068528681/j5m3SsIo0Kb9HwdoFs8FeZB3zB6CidOmO0pGT_64Y7u7Fdy5yGb9Q5xlSW-D0X6Zioyh",
     OneClickNewSetting = { 
         Enable = true,
