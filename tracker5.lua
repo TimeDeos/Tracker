@@ -188,7 +188,7 @@ local userAssignments = {
         "FcgnCQ4170", "MbfgYF2213", "QhpFXN8335", "DswpPT6275", 
         "YxxWHB2538", "GrhqZS4987", "NxwtXK8650", "JjmqWT3603"
     },
-    GatosT001 = {
+    TslxRJ6246 = {
         "LfjFMP3505", "DjjXCZ8033", "WchfRV4896", "XfxdzYG0938",
         "BjdhXM3673", "GyhjNG7052", "XzjbFR4406", "JbrtCC1564"
     },
