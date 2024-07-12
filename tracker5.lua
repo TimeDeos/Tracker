@@ -2,7 +2,19 @@ local script_key = "PqHoDxFkbceJBkpqwayystTAAtkIRqth"
 local Username = game.Players.LocalPlayer.Name
 local ID = game.PlaceId
 local gemsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Currencies.Gems
+local updatesUI = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("PAGES", true):FindFirstChild("UpdatesUI", true)
 local gracePeriod = 600
+local rerollsCount = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GetInventory"):InvokeServer().Items["Trait Crystal"]
+
+local function formatNumberWithCommas(number)
+    local formatted = tostring(number)
+    while true do
+        formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+        if k == 0 then break end
+    end
+    return formatted
+end
+
 local function blackScreen()
     if gemsCount > 100 then
         local player = game.Players.LocalPlayer
@@ -21,18 +33,51 @@ local function blackScreen()
         -- Create a TextLabel to display the countdown
         local countdownLabel = Instance.new("TextLabel")
         countdownLabel.Size = UDim2.new(0.3, 0, 0.1, 0)
-        countdownLabel.Position = UDim2.new(0.35, 0, 0.45, 0)
+        countdownLabel.Position = UDim2.new(0.35, 0, 0.4, 0)
         countdownLabel.BackgroundTransparency = 1
         countdownLabel.TextColor3 = Color3.new(1, 1, 1)
         countdownLabel.TextScaled = true
         countdownLabel.Parent = blackFrame
+
+        -- Create a TextLabel to display the gem count
+        local gemsLabel = Instance.new("TextLabel")
+        gemsLabel.Size = UDim2.new(0.3, 0, 0.1, 0)
+        gemsLabel.Position = UDim2.new(0.35, 0, 0.5, 0)
+        gemsLabel.BackgroundTransparency = 1
+        gemsLabel.TextColor3 = Color3.new(1, 1, 1)
+        gemsLabel.TextScaled = true
+        gemsLabel.Text = "Gems: " .. formatNumberWithCommas(gemsCount)
+        gemsLabel.Parent = blackFrame
+
+        -- Create a TextLabel to display the reroll count
+        local rerollsLabel = Instance.new("TextLabel")
+        rerollsLabel.Size = UDim2.new(0.3, 0, 0.1, 0)
+        rerollsLabel.Position = UDim2.new(0.35, 0, 0.6, 0)
+        rerollsLabel.BackgroundTransparency = 1
+        rerollsLabel.TextColor3 = Color3.new(1, 1, 1)
+        rerollsLabel.TextScaled = true
+        rerollsLabel.Text = "Rerolls: " .. formatNumberWithCommas(rerollsCount)
+        rerollsLabel.Parent = blackFrame
     
-        -- Debug print to ensure the TextLabel is created
-        print("TextLabel created and added to blackFrame")
+        -- Create a Button to remove the black screen and enable 3D rendering
+        local removeButton = Instance.new("TextButton")
+        removeButton.Size = UDim2.new(0.2, 0, 0.1, 0)
+        removeButton.Position = UDim2.new(0.4, 0, 0.7, 0)
+        removeButton.BackgroundColor3 = Color3.new(1, 0, 0)
+        removeButton.TextColor3 = Color3.new(1, 1, 1)
+        removeButton.Text = "Remove Black Screen"
+        removeButton.TextScaled = true
+        removeButton.Parent = blackFrame
+
+        -- Function to handle button click
+        removeButton.MouseButton1Click:Connect(function()
+            screenGui:Destroy()
+            game:GetService("RunService"):Set3dRenderingEnabled(true)
+        end)
     
         -- Function to update the countdown every second
         local function updateCountdown()
-            local totalTime = gracePeriod
+            local totalTime = gracePeriod - 10
             while totalTime > 0 do
                 local minutes = math.floor(totalTime / 60)
                 local seconds = totalTime % 60
@@ -70,6 +115,38 @@ local function blackScreen()
     end
 end
 
+
+
+
+local function spawnPlatform()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local rootPart = character:WaitForChild("HumanoidRootPart")
+
+    -- Create the platform
+    local platform = Instance.new("Part")
+    platform.Size = Vector3.new(200, 1, 200)
+    platform.Position = rootPart.Position - Vector3.new(0, rootPart.Size.Y / 2 + platform.Size.Y / 2, 0)
+    platform.Anchored = true
+    platform.BrickColor = BrickColor.new("Bright blue")
+    platform.Parent = workspace
+end
+
+local function spawnFPSBoost2()
+    local platform = Instance.new('Part')
+    platform.Name = "Platform"
+    platform.Parent = game:GetService("Players").LocalPlayer.Character
+    platform.Transparency = 0.5
+    platform.Size = Vector3.new(50,2,50)
+    platform.Anchored = true
+    platform.CFrame = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0,50,0)
+    wait(1)
+    workspace.TradingLobby:Destroy()
+    workspace.Terrain:Destroy()
+    workspace.Billboards:Destroy()
+    workspace.SubStuff_DONT_DELETE:Destroy()
+end
+
 local function spawnFPSBoost()
     if updatesUI then
         updatesUI:Destroy()
@@ -101,47 +178,34 @@ local function spawnFPSBoost()
     workspace.SubStuff_DONT_DELETE.Leaderboards:Destroy()
     workspace.SubStuff_DONT_DELETE.TowerOfEternity:Destroy()
     workspace.Model:Destroy()
+    wait(10)
     blackScreen()
 end
 
--- Lobby
-local function spawnFPSBoost2()
-    local platform = Instance.new('Part')
-    platform.Name = "Platform"
-    platform.Parent = game:GetService("Players").LocalPlayer.Character
-    platform.Transparency = 0.5
-    platform.Size = Vector3.new(50,2,50)
-    platform.Anchored = true
-    platform.CFrame = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame - Vector3.new(0,50,0)
-    wait(1)
-    workspace.TradingLobby:Destroy()
-    workspace.Terrain:Destroy()
-    workspace.Billboards:Destroy()
-    workspace.SubStuff_DONT_DELETE:Destroy()
-end
 
 local userAssignments = {
     ZygkWW0205 = {
-        "JgkdWT3407", "VwmxVB8202", "VvhTCR5264", "KkghRV0780", 
-        "CncGCR1969", "CgklJB1602", "LmfjKR9309", "PfmqNY7543"
+        "FcgnCQ4170", "MbfgYF2213", "QhpFXN8335", "DswpPT6275", 
+        "YxxWHB2538", "GrhqZS4987", "NxwtXK8650", "JjmqWT3603"
     },
-    GatosT001 = {
-        "PrbwQZ5049", "PfnQSR6347", "NsxpRP5003", "GmqmVZ2055",
-        "QclXBN1191", "SrpsZY8890", "ZvdyCG2680", "GreenPH9478"
+    TslxRJ6246 = {
+        "LfjFMP3505", "DjjXCZ8033", "WchfRV4896", "XfxdzYG0938",
+        "BjdhXM3673", "GyhjNG7052", "XzjbFR4406", "JbrtCC1564"
     },
     TotalPetX_2 = {
-        "MgzsJW0374", "WrhjQD8317", "FrdJWB1833", "NtxvLH4280",
-        "FcgnCQ4170", "MbfgYF2213", "QhpFXN8335", "DswpPT6275"
+        "GxypJR9561", "XlgQPD4571", "ThompsonGZ9194", "SmmcMB7276",
+        "NjzjLJ1485", "DfryJQ8066", "MwqnDZ4181", "CcgzLW8798"
     },
     PnzMTJ5165 = {
-        "YxxWHB2538", "GrhqZS4987", "NxwtXK8650", "JjmqWT3603",
-        "LfjFMP3505", "DjjXCZ8033", "WchfRV4896", "XfxdzYG0938"
+        "HnfgPY3221", "YwjJSM9539", "FbswLF4433", "ScscDR8992",
+        "GbbpSN2079", "thompsonTC7955", "KlqfNL0429", "ZtzwTR6905"
     },
     Chanll1224 = {
-        "BjdhXM3673", "GyhjNG7052", "XzjbFR4406", "JbrtCC1564",
-        "GxypJR9561", "XlgQPD4571", "ThompsonGZ9194", "SmmcMB7276"
+        "LqhqMV0664", "JxstJG2612", "RysgSH4820", "DmvBGT9178",
+        "YnylHZ9941", "bykovPDF4508", "QnkGXT5169", "HzkgLS4691"
     }
 }
+
 
 
 local function startScript(config)
@@ -200,6 +264,7 @@ else
         startScript(config)
     else
         startScript(config)
+        --wait(3)
+        --spawnFPSBoost2()
     end
-    --spawnFPSBoost2()
 end
