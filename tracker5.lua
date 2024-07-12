@@ -185,26 +185,27 @@ end
 
 local userAssignments = {
     ZygkWW0205 = {
-        "FcgnCQ4170", "MbfgYF2213", "QhpFXN8335", "DswpPT6275", 
-        "YxxWHB2538", "GrhqZS4987", "NxwtXK8650", "JjmqWT3603"
+        "JgkdWT3407", "VwmxVB8202", "VvhTCR5264", "KkghRV0780", 
+        "CncGCR1969", "CgklJB1602", "LmfjKR9309", "PfmqNY7543"
     },
-    TslxRJ6246 = {
-        "LfjFMP3505", "DjjXCZ8033", "WchfRV4896", "XfxdzYG0938",
-        "BjdhXM3673", "GyhjNG7052", "XzjbFR4406", "JbrtCC1564"
+    GatosT001 = {
+        "PrbwQZ5049", "PfnQSR6347", "NsxpRP5003", "GmqmVZ2055",
+        "QclXBN1191", "SrpsZY8890", "ZvdyCG2680", "GreenPH9478"
     },
     TotalPetX_2 = {
-        "GxypJR9561", "XlgQPD4571", "ThompsonGZ9194", "SmmcMB7276",
-        "NjzjLJ1485", "DfryJQ8066", "MwqnDZ4181", "CcgzLW8798"
+        "MgzsJW0374", "WrhjQD8317", "FrdJWB1833", "NtxvLH4280",
+        "FcgnCQ4170", "MbfgYF2213", "QhpFXN8335", "DswpPT6275"
     },
     PnzMTJ5165 = {
-        "HnfgPY3221", "YwjJSM9539", "FbswLF4433", "ScscDR8992",
-        "GbbpSN2079", "thompsonTC7955", "KlqfNL0429", "ZtzwTR6905"
+        "YxxWHB2538", "GrhqZS4987", "NxwtXK8650", "JjmqWT3603",
+        "LfjFMP3505", "DjjXCZ8033", "WchfRV4896", "XfxdzYG0938"
     },
     Chanll1224 = {
-        "LqhqMV0664", "JxstJG2612", "RysgSH4820", "DmvBGT9178",
-        "YnylHZ9941", "bykovPDF4508", "QnkGXT5169", "HzkgLS4691"
+        "BjdhXM3673", "GyhjNG7052", "XzjbFR4406", "JbrtCC1564",
+        "GxypJR9561", "XlgQPD4571", "ThompsonGZ9194", "SmmcMB7276"
     }
 }
+
 
 
 
