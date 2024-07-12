@@ -71,9 +71,17 @@ local function blackScreen()
 end
 
 local function spawnFPSBoost()
+    if updatesUI then
+        updatesUI:Destroy()
+    else
+        print("Updates log thing not found")
+    end
+    spawnPlatform()
+    wait(2)
     local lobby = game:GetService("Workspace").Lobby
-    local keep = lobby.Build.Play
-
+    local keepPlay = lobby.Build.Play
+    local keepPortal = lobby.Build.Portal
+    
     -- Iterate through all children of lobby
     for _, child in ipairs(lobby:GetChildren()) do
         -- Check if the child is not the instance to keep
@@ -82,17 +90,17 @@ local function spawnFPSBoost()
         else
             -- If the child is Build, iterate through its children
             for _, buildChild in ipairs(child:GetChildren()) do
-                if buildChild ~= keep then
+                if buildChild ~= keepPlay and buildChild ~= keepPortal then
                     buildChild:Destroy()
                 end
             end
         end
     end
-    workspace.TowerModel:Destroy()
+    
+    workspace.MirrorBuilding:Destroy()
     workspace.SubStuff_DONT_DELETE.Leaderboards:Destroy()
     workspace.SubStuff_DONT_DELETE.TowerOfEternity:Destroy()
     workspace.Model:Destroy()
-    workspace.Lobby.Build.Play:GetChildren()[9]:Destroy()
     blackScreen()
 end
 
@@ -193,5 +201,5 @@ else
     else
         startScript(config)
     end
-    spawnFPSBoost2()
+    --spawnFPSBoost2()
 end
